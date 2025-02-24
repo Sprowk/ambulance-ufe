@@ -5,6 +5,7 @@ import { Component, Host, h } from '@stencil/core';
   styleUrl: 'cv1am-ambulance-wl-list.css',
   shadow: true,
 })
+
 export class Cv1amAmbulanceWlList {
 
   waitingPatients: any[];
@@ -24,7 +25,7 @@ export class Cv1amAmbulanceWlList {
           estimatedDurationMinutes: 20,
           condition: 'Teploty'
       }, {
-          name: 'Ing. Ferdinand Trety',
+          name: 'Ing. Ferdinand Treti',
           patientId: '10028',
           estimatedStart: new Date(Date.now() + 5 * 60),
           estimatedDurationMinutes: 15,

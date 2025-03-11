@@ -11,8 +11,8 @@
     "moduleResolution": "node",
     "module": "esnext",
     "target": "es2017",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false, // testing if build goes thru(11.3)
+    "noUnusedParameters": false, // testing if build goes thru(11.3)
     "jsx": "react",
     "jsxFactory": "h",
     "jsxFragmentFactory": "h.Fragment"

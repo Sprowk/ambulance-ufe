@@ -55,6 +55,7 @@ export class Cv1amAmbulanceWlApp {
       <Host>
         { element === "editor"
         ? <cv1am-ambulance-wl-editor entry-id={entryId}
+          ambulance-id={this.ambulanceId} api-base={this.apiBase}
           oneditor-closed={ () => navigate("./list")}
         ></cv1am-ambulance-wl-editor>
         : <cv1am-ambulance-wl-list  ambulance-id={this.ambulanceId} api-base={this.apiBase}

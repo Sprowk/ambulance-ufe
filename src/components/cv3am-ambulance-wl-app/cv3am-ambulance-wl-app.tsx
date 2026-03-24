@@ -38,6 +38,7 @@ export class Cv3amAmbulanceWlApp {
   }
 
   render() {
+    console.debug("cv3am-ambulance-wl-app.render() - path: %s", this.relativePath);
     let element = "list"
     let entryId = "@new"
 

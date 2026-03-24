@@ -7,6 +7,8 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface Cv3amAmbulanceWlApp {
+        "ambulanceId": string;
+        "apiBase": string;
         /**
           * @default ""
          */
@@ -16,6 +18,8 @@ export namespace Components {
         "entryId": string;
     }
     interface Cv3amAmbulanceWlList {
+        "ambulanceId": string;
+        "apiBase": string;
     }
 }
 export interface Cv3amAmbulanceWlEditorCustomEvent<T> extends CustomEvent<T> {
@@ -75,6 +79,8 @@ declare global {
 }
 declare namespace LocalJSX {
     interface Cv3amAmbulanceWlApp {
+        "ambulanceId"?: string;
+        "apiBase"?: string;
         /**
           * @default ""
          */
@@ -85,20 +91,28 @@ declare namespace LocalJSX {
         "onEditor-closed"?: (event: Cv3amAmbulanceWlEditorCustomEvent<string>) => void;
     }
     interface Cv3amAmbulanceWlList {
+        "ambulanceId"?: string;
+        "apiBase"?: string;
         "onEntry-clicked"?: (event: Cv3amAmbulanceWlListCustomEvent<string>) => void;
     }
 
     interface Cv3amAmbulanceWlAppAttributes {
         "basePath": string;
+        "apiBase": string;
+        "ambulanceId": string;
     }
     interface Cv3amAmbulanceWlEditorAttributes {
         "entryId": string;
+    }
+    interface Cv3amAmbulanceWlListAttributes {
+        "apiBase": string;
+        "ambulanceId": string;
     }
 
     interface IntrinsicElements {
         "cv3am-ambulance-wl-app": Omit<Cv3amAmbulanceWlApp, keyof Cv3amAmbulanceWlAppAttributes> & { [K in keyof Cv3amAmbulanceWlApp & keyof Cv3amAmbulanceWlAppAttributes]?: Cv3amAmbulanceWlApp[K] } & { [K in keyof Cv3amAmbulanceWlApp & keyof Cv3amAmbulanceWlAppAttributes as `attr:${K}`]?: Cv3amAmbulanceWlAppAttributes[K] } & { [K in keyof Cv3amAmbulanceWlApp & keyof Cv3amAmbulanceWlAppAttributes as `prop:${K}`]?: Cv3amAmbulanceWlApp[K] };
         "cv3am-ambulance-wl-editor": Omit<Cv3amAmbulanceWlEditor, keyof Cv3amAmbulanceWlEditorAttributes> & { [K in keyof Cv3amAmbulanceWlEditor & keyof Cv3amAmbulanceWlEditorAttributes]?: Cv3amAmbulanceWlEditor[K] } & { [K in keyof Cv3amAmbulanceWlEditor & keyof Cv3amAmbulanceWlEditorAttributes as `attr:${K}`]?: Cv3amAmbulanceWlEditorAttributes[K] } & { [K in keyof Cv3amAmbulanceWlEditor & keyof Cv3amAmbulanceWlEditorAttributes as `prop:${K}`]?: Cv3amAmbulanceWlEditor[K] };
-        "cv3am-ambulance-wl-list": Cv3amAmbulanceWlList;
+        "cv3am-ambulance-wl-list": Omit<Cv3amAmbulanceWlList, keyof Cv3amAmbulanceWlListAttributes> & { [K in keyof Cv3amAmbulanceWlList & keyof Cv3amAmbulanceWlListAttributes]?: Cv3amAmbulanceWlList[K] } & { [K in keyof Cv3amAmbulanceWlList & keyof Cv3amAmbulanceWlListAttributes as `attr:${K}`]?: Cv3amAmbulanceWlListAttributes[K] } & { [K in keyof Cv3amAmbulanceWlList & keyof Cv3amAmbulanceWlListAttributes as `prop:${K}`]?: Cv3amAmbulanceWlList[K] };
     }
 }
 export { LocalJSX as JSX };

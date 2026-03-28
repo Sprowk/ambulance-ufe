@@ -6,128 +6,128 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface Cv3amAmbulanceWlApp {
-        "ambulanceId": string;
+    interface Cv3amBloodBankApp {
         "apiBase": string;
         /**
           * @default ""
          */
         "basePath": string;
+        "bloodBankId": string;
     }
-    interface Cv3amAmbulanceWlEditor {
-        "ambulanceId": string;
+    interface Cv3amBloodBankEditor {
         "apiBase": string;
-        "entryId": string;
+        "bagId": string;
+        "bloodBankId": string;
     }
-    interface Cv3amAmbulanceWlList {
-        "ambulanceId": string;
+    interface Cv3amBloodBankList {
         "apiBase": string;
+        "bloodBankId": string;
     }
 }
-export interface Cv3amAmbulanceWlEditorCustomEvent<T> extends CustomEvent<T> {
+export interface Cv3amBloodBankEditorCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLCv3amAmbulanceWlEditorElement;
+    target: HTMLCv3amBloodBankEditorElement;
 }
-export interface Cv3amAmbulanceWlListCustomEvent<T> extends CustomEvent<T> {
+export interface Cv3amBloodBankListCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLCv3amAmbulanceWlListElement;
+    target: HTMLCv3amBloodBankListElement;
 }
 declare global {
-    interface HTMLCv3amAmbulanceWlAppElement extends Components.Cv3amAmbulanceWlApp, HTMLStencilElement {
+    interface HTMLCv3amBloodBankAppElement extends Components.Cv3amBloodBankApp, HTMLStencilElement {
     }
-    var HTMLCv3amAmbulanceWlAppElement: {
-        prototype: HTMLCv3amAmbulanceWlAppElement;
-        new (): HTMLCv3amAmbulanceWlAppElement;
+    var HTMLCv3amBloodBankAppElement: {
+        prototype: HTMLCv3amBloodBankAppElement;
+        new (): HTMLCv3amBloodBankAppElement;
     };
-    interface HTMLCv3amAmbulanceWlEditorElementEventMap {
+    interface HTMLCv3amBloodBankEditorElementEventMap {
         "editor-closed": string;
     }
-    interface HTMLCv3amAmbulanceWlEditorElement extends Components.Cv3amAmbulanceWlEditor, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLCv3amAmbulanceWlEditorElementEventMap>(type: K, listener: (this: HTMLCv3amAmbulanceWlEditorElement, ev: Cv3amAmbulanceWlEditorCustomEvent<HTMLCv3amAmbulanceWlEditorElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    interface HTMLCv3amBloodBankEditorElement extends Components.Cv3amBloodBankEditor, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCv3amBloodBankEditorElementEventMap>(type: K, listener: (this: HTMLCv3amBloodBankEditorElement, ev: Cv3amBloodBankEditorCustomEvent<HTMLCv3amBloodBankEditorElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLCv3amAmbulanceWlEditorElementEventMap>(type: K, listener: (this: HTMLCv3amAmbulanceWlEditorElement, ev: Cv3amAmbulanceWlEditorCustomEvent<HTMLCv3amAmbulanceWlEditorElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCv3amBloodBankEditorElementEventMap>(type: K, listener: (this: HTMLCv3amBloodBankEditorElement, ev: Cv3amBloodBankEditorCustomEvent<HTMLCv3amBloodBankEditorElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLCv3amAmbulanceWlEditorElement: {
-        prototype: HTMLCv3amAmbulanceWlEditorElement;
-        new (): HTMLCv3amAmbulanceWlEditorElement;
+    var HTMLCv3amBloodBankEditorElement: {
+        prototype: HTMLCv3amBloodBankEditorElement;
+        new (): HTMLCv3amBloodBankEditorElement;
     };
-    interface HTMLCv3amAmbulanceWlListElementEventMap {
-        "entry-clicked": string;
+    interface HTMLCv3amBloodBankListElementEventMap {
+        "bag-clicked": string;
     }
-    interface HTMLCv3amAmbulanceWlListElement extends Components.Cv3amAmbulanceWlList, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLCv3amAmbulanceWlListElementEventMap>(type: K, listener: (this: HTMLCv3amAmbulanceWlListElement, ev: Cv3amAmbulanceWlListCustomEvent<HTMLCv3amAmbulanceWlListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    interface HTMLCv3amBloodBankListElement extends Components.Cv3amBloodBankList, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCv3amBloodBankListElementEventMap>(type: K, listener: (this: HTMLCv3amBloodBankListElement, ev: Cv3amBloodBankListCustomEvent<HTMLCv3amBloodBankListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLCv3amAmbulanceWlListElementEventMap>(type: K, listener: (this: HTMLCv3amAmbulanceWlListElement, ev: Cv3amAmbulanceWlListCustomEvent<HTMLCv3amAmbulanceWlListElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCv3amBloodBankListElementEventMap>(type: K, listener: (this: HTMLCv3amBloodBankListElement, ev: Cv3amBloodBankListCustomEvent<HTMLCv3amBloodBankListElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLCv3amAmbulanceWlListElement: {
-        prototype: HTMLCv3amAmbulanceWlListElement;
-        new (): HTMLCv3amAmbulanceWlListElement;
+    var HTMLCv3amBloodBankListElement: {
+        prototype: HTMLCv3amBloodBankListElement;
+        new (): HTMLCv3amBloodBankListElement;
     };
     interface HTMLElementTagNameMap {
-        "cv3am-ambulance-wl-app": HTMLCv3amAmbulanceWlAppElement;
-        "cv3am-ambulance-wl-editor": HTMLCv3amAmbulanceWlEditorElement;
-        "cv3am-ambulance-wl-list": HTMLCv3amAmbulanceWlListElement;
+        "cv3am-blood-bank-app": HTMLCv3amBloodBankAppElement;
+        "cv3am-blood-bank-editor": HTMLCv3amBloodBankEditorElement;
+        "cv3am-blood-bank-list": HTMLCv3amBloodBankListElement;
     }
 }
 declare namespace LocalJSX {
-    interface Cv3amAmbulanceWlApp {
-        "ambulanceId"?: string;
+    interface Cv3amBloodBankApp {
         "apiBase"?: string;
         /**
           * @default ""
          */
         "basePath"?: string;
+        "bloodBankId"?: string;
     }
-    interface Cv3amAmbulanceWlEditor {
-        "ambulanceId"?: string;
+    interface Cv3amBloodBankEditor {
         "apiBase"?: string;
-        "entryId"?: string;
-        "onEditor-closed"?: (event: Cv3amAmbulanceWlEditorCustomEvent<string>) => void;
+        "bagId"?: string;
+        "bloodBankId"?: string;
+        "onEditor-closed"?: (event: Cv3amBloodBankEditorCustomEvent<string>) => void;
     }
-    interface Cv3amAmbulanceWlList {
-        "ambulanceId"?: string;
+    interface Cv3amBloodBankList {
         "apiBase"?: string;
-        "onEntry-clicked"?: (event: Cv3amAmbulanceWlListCustomEvent<string>) => void;
+        "bloodBankId"?: string;
+        "onBag-clicked"?: (event: Cv3amBloodBankListCustomEvent<string>) => void;
     }
 
-    interface Cv3amAmbulanceWlAppAttributes {
+    interface Cv3amBloodBankAppAttributes {
         "basePath": string;
         "apiBase": string;
-        "ambulanceId": string;
+        "bloodBankId": string;
     }
-    interface Cv3amAmbulanceWlEditorAttributes {
-        "entryId": string;
-        "ambulanceId": string;
+    interface Cv3amBloodBankEditorAttributes {
+        "bagId": string;
+        "bloodBankId": string;
         "apiBase": string;
     }
-    interface Cv3amAmbulanceWlListAttributes {
+    interface Cv3amBloodBankListAttributes {
         "apiBase": string;
-        "ambulanceId": string;
+        "bloodBankId": string;
     }
 
     interface IntrinsicElements {
-        "cv3am-ambulance-wl-app": Omit<Cv3amAmbulanceWlApp, keyof Cv3amAmbulanceWlAppAttributes> & { [K in keyof Cv3amAmbulanceWlApp & keyof Cv3amAmbulanceWlAppAttributes]?: Cv3amAmbulanceWlApp[K] } & { [K in keyof Cv3amAmbulanceWlApp & keyof Cv3amAmbulanceWlAppAttributes as `attr:${K}`]?: Cv3amAmbulanceWlAppAttributes[K] } & { [K in keyof Cv3amAmbulanceWlApp & keyof Cv3amAmbulanceWlAppAttributes as `prop:${K}`]?: Cv3amAmbulanceWlApp[K] };
-        "cv3am-ambulance-wl-editor": Omit<Cv3amAmbulanceWlEditor, keyof Cv3amAmbulanceWlEditorAttributes> & { [K in keyof Cv3amAmbulanceWlEditor & keyof Cv3amAmbulanceWlEditorAttributes]?: Cv3amAmbulanceWlEditor[K] } & { [K in keyof Cv3amAmbulanceWlEditor & keyof Cv3amAmbulanceWlEditorAttributes as `attr:${K}`]?: Cv3amAmbulanceWlEditorAttributes[K] } & { [K in keyof Cv3amAmbulanceWlEditor & keyof Cv3amAmbulanceWlEditorAttributes as `prop:${K}`]?: Cv3amAmbulanceWlEditor[K] };
-        "cv3am-ambulance-wl-list": Omit<Cv3amAmbulanceWlList, keyof Cv3amAmbulanceWlListAttributes> & { [K in keyof Cv3amAmbulanceWlList & keyof Cv3amAmbulanceWlListAttributes]?: Cv3amAmbulanceWlList[K] } & { [K in keyof Cv3amAmbulanceWlList & keyof Cv3amAmbulanceWlListAttributes as `attr:${K}`]?: Cv3amAmbulanceWlListAttributes[K] } & { [K in keyof Cv3amAmbulanceWlList & keyof Cv3amAmbulanceWlListAttributes as `prop:${K}`]?: Cv3amAmbulanceWlList[K] };
+        "cv3am-blood-bank-app": Omit<Cv3amBloodBankApp, keyof Cv3amBloodBankAppAttributes> & { [K in keyof Cv3amBloodBankApp & keyof Cv3amBloodBankAppAttributes]?: Cv3amBloodBankApp[K] } & { [K in keyof Cv3amBloodBankApp & keyof Cv3amBloodBankAppAttributes as `attr:${K}`]?: Cv3amBloodBankAppAttributes[K] } & { [K in keyof Cv3amBloodBankApp & keyof Cv3amBloodBankAppAttributes as `prop:${K}`]?: Cv3amBloodBankApp[K] };
+        "cv3am-blood-bank-editor": Omit<Cv3amBloodBankEditor, keyof Cv3amBloodBankEditorAttributes> & { [K in keyof Cv3amBloodBankEditor & keyof Cv3amBloodBankEditorAttributes]?: Cv3amBloodBankEditor[K] } & { [K in keyof Cv3amBloodBankEditor & keyof Cv3amBloodBankEditorAttributes as `attr:${K}`]?: Cv3amBloodBankEditorAttributes[K] } & { [K in keyof Cv3amBloodBankEditor & keyof Cv3amBloodBankEditorAttributes as `prop:${K}`]?: Cv3amBloodBankEditor[K] };
+        "cv3am-blood-bank-list": Omit<Cv3amBloodBankList, keyof Cv3amBloodBankListAttributes> & { [K in keyof Cv3amBloodBankList & keyof Cv3amBloodBankListAttributes]?: Cv3amBloodBankList[K] } & { [K in keyof Cv3amBloodBankList & keyof Cv3amBloodBankListAttributes as `attr:${K}`]?: Cv3amBloodBankListAttributes[K] } & { [K in keyof Cv3amBloodBankList & keyof Cv3amBloodBankListAttributes as `prop:${K}`]?: Cv3amBloodBankList[K] };
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "cv3am-ambulance-wl-app": LocalJSX.IntrinsicElements["cv3am-ambulance-wl-app"] & JSXBase.HTMLAttributes<HTMLCv3amAmbulanceWlAppElement>;
-            "cv3am-ambulance-wl-editor": LocalJSX.IntrinsicElements["cv3am-ambulance-wl-editor"] & JSXBase.HTMLAttributes<HTMLCv3amAmbulanceWlEditorElement>;
-            "cv3am-ambulance-wl-list": LocalJSX.IntrinsicElements["cv3am-ambulance-wl-list"] & JSXBase.HTMLAttributes<HTMLCv3amAmbulanceWlListElement>;
+            "cv3am-blood-bank-app": LocalJSX.IntrinsicElements["cv3am-blood-bank-app"] & JSXBase.HTMLAttributes<HTMLCv3amBloodBankAppElement>;
+            "cv3am-blood-bank-editor": LocalJSX.IntrinsicElements["cv3am-blood-bank-editor"] & JSXBase.HTMLAttributes<HTMLCv3amBloodBankEditorElement>;
+            "cv3am-blood-bank-list": LocalJSX.IntrinsicElements["cv3am-blood-bank-list"] & JSXBase.HTMLAttributes<HTMLCv3amBloodBankListElement>;
         }
     }
 }

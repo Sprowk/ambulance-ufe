@@ -5,17 +5,17 @@ declare global {
 }
 
 @Component({
-  tag: 'cv3am-ambulance-wl-app',
-  styleUrl: 'cv3am-ambulance-wl-app.css',
+  tag: 'cv3am-blood-bank-app',
+  styleUrl: 'cv3am-blood-bank-app.css',
   shadow: true,
 })
-export class Cv3amAmbulanceWlApp {
+export class Cv3amBloodBankApp {
 
   @State() private relativePath = "";
 
   @Prop() basePath: string="";
   @Prop() apiBase: string;
-  @Prop() ambulanceId: string;
+  @Prop() bloodBankId: string;
 
   componentWillLoad() {
     const baseUri = new URL(this.basePath, document.baseURI || "/").pathname;
@@ -38,14 +38,14 @@ export class Cv3amAmbulanceWlApp {
   }
 
   render() {
-    console.debug("cv3am-ambulance-wl-app.render() - path: %s", this.relativePath);
+    console.debug("cv3am-blood-bank-app.render() - path: %s", this.relativePath);
     let element = "list"
-    let entryId = "@new"
+    let bagId = "@new"
 
-    if ( this.relativePath.startsWith("entry/"))
+    if ( this.relativePath.startsWith("bag/"))
     {
       element = "editor";
-      entryId = this.relativePath.split("/")[1]
+      bagId = this.relativePath.split("/")[1]
     }
 
     const navigate = (path:string) => {
@@ -56,13 +56,13 @@ export class Cv3amAmbulanceWlApp {
     return (
       <Host>
         { element === "editor"
-        ? <cv3am-ambulance-wl-editor entry-id={entryId}
-            ambulance-id={this.ambulanceId} api-base={this.apiBase}
+        ? <cv3am-blood-bank-editor bag-id={bagId}
+            blood-bank-id={this.bloodBankId} api-base={this.apiBase}
             oneditor-closed={ () => navigate("./list")} >
-          </cv3am-ambulance-wl-editor>
-        : <cv3am-ambulance-wl-list  ambulance-id={this.ambulanceId} api-base={this.apiBase}
-            onentry-clicked={ (ev: CustomEvent<string>)=> navigate("./entry/" + ev.detail) } >
-          </cv3am-ambulance-wl-list>
+          </cv3am-blood-bank-editor>
+        : <cv3am-blood-bank-list  blood-bank-id={this.bloodBankId} api-base={this.apiBase}
+            onbag-clicked={ (ev: CustomEvent<string>)=> navigate("./bag/" + ev.detail) } >
+          </cv3am-blood-bank-list>
         }
 
       </Host>

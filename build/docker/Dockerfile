@@ -18,6 +18,6 @@ FROM ghcr.io/polyfea/spa-base
 
 COPY --from=build /build/www /spa/public
 
-ENV OTEL_SERVICE_NAME=cv3am-ambulance-ufe
+ENV OTEL_SERVICE_NAME=cv3am-blood-bank-ufe
 ENV SPA_BASE_PORT=8080
 EXPOSE 8080

@@ -1,9 +1,9 @@
-name: Ambulance uFE CI
+name: Blood Bank uFE CI
 on:
   push:
     branches: [ "main" ]
     tags:
-    - 'v1*'
+    - 'v*'
   pull_request:
     branches: [ "main" ]
 

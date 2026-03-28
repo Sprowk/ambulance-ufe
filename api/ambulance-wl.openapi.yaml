@@ -3,58 +3,68 @@ servers:
   - description: Cluster Endpoint
     url: /api
 info:
-  description: Ambulance Waiting List management for Web-In-Cloud system
-  version: "1.0.0"
-  title: Waiting List Api
+  description: Blood Bag Management System for Web-In-Cloud system
+  version: "2.0.0"
+  title: Blood Bank API
   contact:
-    email: your_email@stuba.sk
+    email: alexander8.matuska@gmail.com
   license:
     name: CC BY 4.0
     url: "https://creativecommons.org/licenses/by/4.0/"
 tags:
-- name: ambulanceWaitingList
-  description: Ambulance Waiting List API
-- name: ambulanceConditions
-  description: Patient conditions and symptoms handled in the ambulance
+- name: bloodBankBags
+  description: Blood Bank Bags API
 paths:
-  "/waiting-list/{ambulanceId}/entries":
+  "/blood-bank/{bloodBankId}/bags":
     get:
       tags:
-        - ambulanceWaitingList
-      summary: Provides the ambulance waiting list
-      operationId: getWaitingListEntries
-      description: By using ambulanceId you get list of entries in ambulance waiting list
+        - bloodBankBags
+      summary: Provides list of blood bags in the bank
+      operationId: getBloodBags
+      description: By using bloodBankId you get list of blood bags in the blood bank
       parameters:
         - in: path
-          name: ambulanceId
-          description: pass the id of the particular ambulance
+          name: bloodBankId
+          description: pass the id of the particular blood bank
           required: true
           schema:
             type: string
+        - in: query
+          name: bloodGroup
+          description: filter by blood group
+          schema:
+            type: string
+            enum: [A, B, AB, O]
+        - in: query
+          name: rhFactor
+          description: filter by Rh factor
+          schema:
+            type: string
+            enum: [positive, negative]
       responses:
         "200":
-          description: value of the waiting list entries
+          description: list of blood bags
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/WaitingListEntry"
+                  $ref: "#/components/schemas/BloodBag"
               examples:
                 response:
-                  $ref: "#/components/examples/WaitingListEntriesExample"
+                  $ref: "#/components/examples/BloodBagsExample"
         "404":
-          description: Ambulance with such ID does not exist
+          description: Blood bank with such ID does not exist
     post:
       tags:
-        - ambulanceWaitingList
-      summary: Saves new entry into waiting list
-      operationId: createWaitingListEntry
-      description: Use this method to store new entry into the waiting list.
+        - bloodBankBags
+      summary: Creates new blood bag entry
+      operationId: createBloodBag
+      description: Use this method to register a new blood bag into the blood bank.
       parameters:
         - in: path
-          name: ambulanceId
-          description: pass the id of the particular ambulance
+          name: bloodBankId
+          description: pass the id of the particular blood bank
           required: true
           schema:
             type: string
@@ -62,80 +72,78 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/WaitingListEntry"
+              $ref: "#/components/schemas/BloodBag"
             examples:
               request-sample:
-                $ref: "#/components/examples/WaitingListEntryExample"
-        description: Waiting list entry to store
+                $ref: "#/components/examples/BloodBagExample"
+        description: Blood bag to register
         required: true
       responses:
-        "200":
-          description: >-
-            Value of the waiting list entry with re-computed estimated time of
-            ambulance entry
+        "201":
+          description: Blood bag successfully created
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/WaitingListEntry"
+                $ref: "#/components/schemas/BloodBag"
               examples:
                 updated-response:
-                  $ref: "#/components/examples/WaitingListEntryExample"
+                  $ref: "#/components/examples/BloodBagExample"
         "400":
           description: Missing mandatory properties of input object.
         "404":
-          description: Ambulance with such ID does not exists
+          description: Blood bank with such ID does not exist
         "409":
-          description: Entry with the specified id already exists
-  "/waiting-list/{ambulanceId}/entries/{entryId}":
+          description: Blood bag with the specified id already exists
+  "/blood-bank/{bloodBankId}/bags/{bagId}":
     get:
       tags:
-        - ambulanceWaitingList
-      summary: Provides details about waiting list entry
-      operationId: getWaitingListEntry
+        - bloodBankBags
+      summary: Provides details about a blood bag
+      operationId: getBloodBag
       description: >-
-        By using ambulanceId and entryId you can details of particular entry
-        item ambulance.
+        By using bloodBankId and bagId you can get details of a particular blood
+        bag.
       parameters:
         - in: path
-          name: ambulanceId
-          description: pass the id of the particular ambulance
+          name: bloodBankId
+          description: pass the id of the particular blood bank
           required: true
           schema:
             type: string
         - in: path
-          name: entryId
-          description: pass the id of the particular entry in the waiting list
+          name: bagId
+          description: pass the id of the particular blood bag
           required: true
           schema:
             type: string
       responses:
         "200":
-          description: value of the waiting list entries
+          description: details of the blood bag
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/WaitingListEntry"
+                $ref: "#/components/schemas/BloodBag"
               examples:
                 response:
-                  $ref: "#/components/examples/WaitingListEntryExample"
+                  $ref: "#/components/examples/BloodBagExample"
         "404":
-          description: Ambulance or Entry with such ID does not exists
+          description: Blood bank or blood bag with such ID does not exist
     put:
       tags:
-        - ambulanceWaitingList
-      summary: Updates specific entry
-      operationId: updateWaitingListEntry
-      description: Use this method to update content of the waiting list entry.
+        - bloodBankBags
+      summary: Updates specific blood bag
+      operationId: updateBloodBag
+      description: Use this method to update content of a blood bag entry.
       parameters:
         - in: path
-          name: ambulanceId
-          description: pass the id of the particular ambulance
+          name: bloodBankId
+          description: pass the id of the particular blood bank
           required: true
           schema:
             type: string
         - in: path
-          name: entryId
-          description: pass the id of the particular entry in the waiting list
+          name: bagId
+          description: pass the id of the particular blood bag
           required: true
           schema:
             type: string
@@ -143,212 +151,135 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/WaitingListEntry"
+              $ref: "#/components/schemas/BloodBag"
             examples:
               request:
-                $ref: "#/components/examples/WaitingListEntryExample"
-        description: Waiting list entry to update
+                $ref: "#/components/examples/BloodBagExample"
+        description: Blood bag data to update
         required: true
       responses:
         "200":
-          description: >-
-            value of the waiting list entry with re-computed estimated time of
-            ambulance entry
+          description: updated blood bag entry
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/WaitingListEntry"
+                $ref: "#/components/schemas/BloodBag"
               examples:
                 response:
-                  $ref: "#/components/examples/WaitingListEntryExample"
+                  $ref: "#/components/examples/BloodBagExample"
         "403":
           description: >-
-            Value of the entryID and the data id is mismatching. Details are
+            Value of the bagId and the data id is mismatching. Details are
             provided in the response body.
         "404":
-          description: Ambulance or Entry with such ID does not exists
+          description: Blood bank or blood bag with such ID does not exist
     delete:
       tags:
-        - ambulanceWaitingList
-      summary: Deletes specific entry
-      operationId: deleteWaitingListEntry
-      description: Use this method to delete the specific entry from the waiting list.
+        - bloodBankBags
+      summary: Deletes specific blood bag
+      operationId: deleteBloodBag
+      description: Use this method to delete the specific blood bag from the blood bank.
       parameters:
         - in: path
-          name: ambulanceId
-          description: pass the id of the particular ambulance
+          name: bloodBankId
+          description: pass the id of the particular blood bank
           required: true
           schema:
             type: string
         - in: path
-          name: entryId
-          description: pass the id of the particular entry in the waiting list
+          name: bagId
+          description: pass the id of the particular blood bag
           required: true
           schema:
             type: string
       responses:
         "204":
-          description: Item deleted
+          description: Blood bag deleted
         "404":
-          description: Ambulance or Entry with such ID does not exists
-  "/waiting-list/{ambulanceId}/condition":
-    get:
-      tags:
-        - ambulanceConditions
-      summary: Provides the list of conditions associated with ambulance
-      operationId: getConditions
-      description: By using ambulanceId you get list of predefined conditions
-      parameters:
-        - in: path
-          name: ambulanceId
-          description: pass the id of the particular ambulance
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: value of the predefined conditions
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Condition"
-              examples:
-                response:
-                  $ref: "#/components/examples/ConditionsListExample"
-        "404":
-          description: Ambulance with such ID does not exists
+          description: Blood bank or blood bag with such ID does not exist
 components:
   schemas:
-    WaitingListEntry:
+    BloodBag:
       type: object
-      required: [id, patientId, waitingSince, estimatedDurationMinutes]
+      required: [id, bloodGroup, rhFactor, volume]
       properties:
         id:
           type: string
-          example: x321ab3
-          description: Unique id of the entry in this waiting list
-        name:
+          example: bag-001
+          description: Unique id of the blood bag
+        bloodGroup:
           type: string
-          example: "Jožko Púčik"
-          description: Name of patient in waiting list
-        patientId:
+          enum: [A, B, AB, O]
+          example: A
+          description: Blood group of the bag
+        rhFactor:
           type: string
-          example: 460527-jozef-pucik
-          description: Unique identifier of the patient known to Web-In-Cloud system
-        waitingSince:
-          type: string
-          format: date-time
-          example: "2038-12-24T10:05:00Z"
-          description: Timestamp since when the patient entered the waiting list
-        estimatedStart:
+          enum: [positive, negative]
+          example: positive
+          description: Rh factor of the blood bag
+        collectionDate:
           type: string
           format: date-time
-          example: "2038-12-24T10:35:00Z"
-          description: Estimated time of entering ambulance. Ignored on post.
-        estimatedDurationMinutes:
+          example: "2024-01-15T08:30:00Z"
+          description: Date when the blood was collected
+        volume:
           type: integer
           format: int32
-          example: 15
-          description: >-
-            Estimated duration of ambulance visit. If not provided then it will
-            be computed based on condition and ambulance settings
-        condition:
-          $ref: "#/components/schemas/Condition"
+          example: 450
+          description: Volume of the blood bag in ml
+        status:
+          type: string
+          enum: [available, reserved, issued, expired, destroyed]
+          example: available
+          description: Current status of the blood bag
+        donorId:
+          type: string
+          example: donor-001
+          description: Identifier of the blood donor
+        notes:
+          type: string
+          example: ""
+          description: Additional notes about the blood bag
+        createdAt:
+          type: string
+          format: date-time
+          example: "2024-01-15T08:30:00Z"
+          description: Timestamp when the record was created
       example:
-        $ref: "#/components/examples/WaitingListEntryExample"
-    Condition:
-      description: "Describes disease, symptoms, or other reasons of patient   visit"
-      required:
-        - value
-      properties:
-        value:
-          type: string
-          example: Teploty
-        code:
-          type: string
-          example: subfebrilia
-        reference:
-          type: string
-          format: url
-          example: "https://zdravoteka.sk/priznaky/zvysena-telesna-teplota/"
-          description: Link to encyclopedical explanation of the patient's condition
-        typicalDurationMinutes:
-          type: integer
-          format: int32
-          example: 20
-      example:
-        $ref: "#/components/examples/ConditionExample"
+        $ref: "#/components/examples/BloodBagExample"
   examples:
-    WaitingListEntryExample:
-      summary: "Ľudomír Zlostný waiting"
+    BloodBagExample:
+      summary: "Sample blood bag"
       description: |
-        Entry represents a patient waiting in the ambulance prep room with
-        defined symptoms
+        Entry represents a blood bag registered in the blood bank
       value:
-        id: x321ab3
-        name: "Ľudomír Zlostný"
-        patientId: 74895-ludomir-zlostny
-        waitingSince: "2038-12-24T10:05:00.000Z"
-        estimatedStart: "2038-12-24T10:35:00.000Z"
-        estimatedDurationMinutes: 15
-        condition:
-          value: "Nevoľnosť"
-          code: nausea
-          reference: "https://zdravoteka.sk/priznaky/nevolnost/"
-    ConditionExample:
-      summary: Conditions and symptoms
-      description: list of few symptoms that can be chosen by patients
-      value:
-        valuee: Teploty
-        code: subfebrilia
-        reference: >-
-          https://zdravoteka.sk/priznaky/zvysena-telesna-teplota/
-    WaitingListEntriesExample:
-      summary: List of waiting patients
+        id: bag-001
+        bloodGroup: A
+        rhFactor: positive
+        collectionDate: "2024-01-15T08:30:00.000Z"
+        volume: 450
+        status: available
+        donorId: donor-001
+        notes: ""
+        createdAt: "2024-01-15T08:30:00.000Z"
+    BloodBagsExample:
+      summary: List of blood bags
       description: |
-        Example waiting list containing 2 patients
+        Example list containing 2 blood bags
       value:
-      - id: x321ab3
-        name: "Jožko Púčik"
-        patientId: 460527-jozef-pucik
-        waitingSince: "2038-12-24T10:05:00.000Z"
-        estimatedStart: "2038-12-24T10:35:00.000Z"
-        estimatedDurationMinutes: 15
-        condition:
-          value: Teploty
-          code: subfebrilia
-          reference: "https://zdravoteka.sk/priznaky/zvysena-telesna-teplota/"
-      - id: x321ab4
-        name: Ferdinand Trety
-        patientId: 780907-ferdinand-tre
-        waitingSince: "2038-12-24T10:25:00.000Z"
-        estimatedStart: "2038-12-24T10:50:00.000Z"
-        estimatedDurationMinutes: 25
-        condition:
-          value: "Nevoľnosť"
-          code: nausea
-          reference: "https://zdravoteka.sk/priznaky/nevolnost/"
-    ConditionsListExample:
-      summary: Sample of GP ambulance conditions
-      description: |
-        Example list of possible conditions, symptoms, and visit reasons
-      value:
-        - value: Teploty
-          code: subfebrilia
-          reference: "https://zdravoteka.sk/priznaky/zvysena-telesna-teplota/"
-          typicalDurationMinutes: 20
-        - value: "Nevoľnosť"
-          code: nausea
-          reference: "https://zdravoteka.sk/priznaky/nevolnost/"
-          typicalDurationMinutes: 45
-        - value: Kontrola
-          code: followup
-          typicalDurationMinutes: 15
-        - value: "Administratívny úkon"
-          code: administration
-          typicalDurationMinutes: 10
-        - value: Odber krvi
-          code: blood-test
-          typicalDurationMinutes: 10
+      - id: bag-001
+        bloodGroup: A
+        rhFactor: positive
+        collectionDate: "2024-01-15T08:30:00.000Z"
+        volume: 450
+        status: available
+        donorId: donor-001
+        createdAt: "2024-01-15T08:30:00.000Z"
+      - id: bag-002
+        bloodGroup: O
+        rhFactor: negative
+        collectionDate: "2024-01-20T14:00:00.000Z"
+        volume: 350
+        status: available
+        donorId: donor-002
+        createdAt: "2024-01-20T14:00:00.000Z"

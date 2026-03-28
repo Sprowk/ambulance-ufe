@@ -1,8 +1,6 @@
-apis/AmbulanceConditionsApi.ts
-apis/AmbulanceWaitingListApi.ts
+apis/BloodBankBagsApi.ts
 apis/index.ts
 index.ts
-models/Condition.ts
-models/WaitingListEntry.ts
+models/BloodBag.ts
 models/index.ts
 runtime.ts

@@ -105,7 +105,8 @@ export class Cv3amBloodBankEditor {
           </md-filled-select>
 
           <md-filled-text-field label="Objem (ml)"
-            required type="number" value={this.bag?.volume?.toString()}
+            required type="number" min="1" max="2000" step="1"
+            value={this.bag?.volume?.toString()}
             oninput={ (ev: InputEvent) => {
               if(this.bag) {this.bag.volume = Number.parseInt(this.handleInputEvent(ev))}
             } }>

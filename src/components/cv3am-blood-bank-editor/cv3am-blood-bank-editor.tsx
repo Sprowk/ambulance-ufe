@@ -19,6 +19,7 @@ export class Cv3amBloodBankEditor {
   @State() isValid: boolean;
 
   private formElement: HTMLFormElement;
+  private deleteDialog: HTMLDialogElement;
 
   async componentWillLoad() {
     this.getBloodBagAsync();
@@ -155,10 +156,21 @@ export class Cv3amBloodBankEditor {
 
         <div class="actions">
           <md-filled-tonal-button id="delete" disabled={!this.bag || this.bag?.id === "@new" }
-            onClick={() => this.deleteBag()} >
+            onClick={() => this.deleteDialog?.show()} >
             <md-icon slot="icon">delete</md-icon>
             Zmazat
           </md-filled-tonal-button>
+
+          <md-dialog ref={el => this.deleteDialog = el as HTMLDialogElement}>
+            <div slot="headline">Zmazat krvny vak?</div>
+            <div slot="content">Tato akcia sa neda vratit spat.</div>
+            <div slot="actions">
+              <md-outlined-button onClick={() => this.deleteDialog?.close()}>Zrusit</md-outlined-button>
+              <md-filled-button onClick={() => { this.deleteDialog?.close(); this.deleteBag(); }}>
+                Zmazat
+              </md-filled-button>
+            </div>
+          </md-dialog>
           <span class="stretch-fill"></span>
           <md-outlined-button id="cancel"
             onClick={() => this.editorClosed.emit("cancel")}>

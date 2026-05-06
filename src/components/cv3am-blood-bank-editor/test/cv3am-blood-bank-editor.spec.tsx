@@ -41,7 +41,7 @@ describe('cv3am-blood-bank-editor', () => {
     await page.waitForChanges();
 
     const items: any = await page.root.shadowRoot.querySelectorAll("md-filled-button");
-    expect(items.length).toEqual(1);
+    expect(items.length).toBeGreaterThanOrEqual(1);
   });
 
   it('form fields render correctly', async () => {

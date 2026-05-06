@@ -218,10 +218,19 @@ export class Cv3amBloodBankEditor {
       if (response.raw.status < 299) {
         this.editorClosed.emit("store")
       } else {
-        this.errorMessage = `Cannot store blood bag: ${response.raw.statusText}`
+        this.errorMessage = `Cannot store blood bag: ${await this.extractErrorMessage(response.raw)}`
       }
     } catch (err: any) {
       this.errorMessage = `Cannot store blood bag: ${err.message || "unknown"}`
+    }
+  }
+
+  private async extractErrorMessage(response: Response): Promise<string> {
+    try {
+      const body = await response.json();
+      return body?.message || response.statusText;
+    } catch {
+      return response.statusText;
     }
   }
 

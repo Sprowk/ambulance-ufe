@@ -14,6 +14,7 @@ export class Cv3amBloodBankList {
   @State() errorMessage: string;
   @State() selectedBloodGroup: string = "";
   @State() selectedRhFactor: string = "";
+  @State() selectedStatus: string = "";
 
   @State() bloodBags: BloodBag[];
 
@@ -30,6 +31,9 @@ export class Cv3amBloodBankList {
       }
       if (this.selectedRhFactor) {
         params.rhFactor = this.selectedRhFactor;
+      }
+      if (this.selectedStatus) {
+        params.status = this.selectedStatus;
       }
       const response = await bagsApi.getBloodBagsRaw(params);
       if (response.raw.status < 299) {
@@ -92,6 +96,21 @@ export class Cv3amBloodBankList {
               <md-select-option value="negative" selected={this.selectedRhFactor === "negative"}>
                 <div slot="headline">-</div>
               </md-select-option>
+            </md-filled-select>
+
+            <md-filled-select label="Status"
+              onInput={(ev: InputEvent) => {
+                this.selectedStatus = (ev.target as HTMLInputElement).value;
+                this.handleFilterChange();
+              }}>
+              <md-select-option value="" selected={!this.selectedStatus}>
+                <div slot="headline">Vsetky</div>
+              </md-select-option>
+              {["available", "reserved", "issued", "expired", "destroyed"].map(status =>
+                <md-select-option value={status} selected={this.selectedStatus === status}>
+                  <div slot="headline">{status}</div>
+                </md-select-option>
+              )}
             </md-filled-select>
           </div>
 
